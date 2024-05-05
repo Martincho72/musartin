@@ -19,8 +19,10 @@
     </style>
 </head>
 <body>
-    <h1>¡Bienvenido a Musartin!</h1>
-    <a href="menu.php"><h2>Acceder a la base de datos</h2></a>
-    <a href="CrearBorrar.php"><h2>Crear o Borrar base de datos</h2></a>
+    <h1>¿Qué desea hacer?</h1>
+    <a href="insertar.php"><h2>Insertar</h2></a>
+    <a href="buscar.php"><h2>Buscar</h2></a>
+    <a href="eliminar.php"><h2>Eliminar</h2></a>
+    <a href="modificar.php"><h2>Modificar</h2></a>
 </body>
 </html>

@@ -43,9 +43,9 @@ require("./../../ConexionBBDD/usarMusartin.php");
     value='".$fila['ubicacion']."' />
      </p>";     
 
-     echo "<p><label for='capacidad'>Capacidad</label>
-    <input type='number' name='capacidad' id='capacidad'
-    value='".$fila['capacidad']."' />
+     echo "<p><label for='maximo_cuadros'>Capacidad Máxima</label>
+    <input type='number' name='maximo_cuadros' id='maximo_cuadros'
+    value='".$fila['maximo_cuadros']."' />
      </p>";
     }
   ?>

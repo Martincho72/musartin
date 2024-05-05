@@ -1,5 +1,5 @@
 <?php
-require("./ConexionBBDD/SesionIniciada.php");
+require("./../ConexionBBDD/SesionIniciada.php");
 // Requerir el archivo de conexión a la base de datos
 require("./../ConexionBBDD/usarMusartin.php");
 

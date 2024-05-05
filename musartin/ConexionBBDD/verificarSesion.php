@@ -10,7 +10,7 @@ if (isset($_REQUEST['usuario']) && isset($_REQUEST['clave'])) {
         // Usuario y contraseña correctos, establecer variables de sesión y redirigir a index.php
         $_SESSION['usuario'] = $usuario;
         $_SESSION['pwd'] = $clave;
-        header('Location: ../index.php');
+        header('Location: ../acceso.php');
     } else {
         // Usuario o contraseña incorrectos, mostrar mensaje de error en la misma página
         echo "<script>alert('Usuario o contraseña incorrectos');</script>";

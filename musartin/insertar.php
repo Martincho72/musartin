@@ -26,8 +26,8 @@
         <input type="text" id="nombre_sala" name="nombre_sala" required><br>
         <label for="ubicacion">Ubicación:</label>
         <input type="text" id="ubicacion" name="ubicacion" required><br>
-        <label for="capacidad">Capacidad:</label>
-        <input type="number" id="capacidad" name="capacidad" required><br>
+        <label for="capacidad_maxima">Capacidad Máxima:</label>
+        <input type="number" id="capacidad_maxima" name="capacidad_maxima" required><br>
         <input type="submit" value="Agregar Sala">
     </form>
 

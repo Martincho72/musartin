@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musartin - Base De Datos</title>
+    <title>Musartin - Inicio</title>
     <style>
         h1{
             text-align: center;
@@ -19,9 +19,8 @@
     </style>
 </head>
 <body>
-    <h1>¿Qué acción desea realizar?</h1>
-    <a href="./Demo/CrearBD.php"><h2>Crear la base de datos (+ datos demo)</h2></a>
-    <a href="./Demo/BorrarBD.php"><h2>Borrar la base de datos</h2></a>
-    <a href="acceso.php"><h2>Inicio</h2></a>
+    <h1>¡Bienvenido a Musartin!</h1>
+    <a href="./ConexionBBDD/existeBBDD.php"><h2>Acceder a la base de datos</h2></a>
+    <a href="CrearBorrar.php"><h2>Crear o Borrar base de datos</h2></a>
 </body>
 </html>
