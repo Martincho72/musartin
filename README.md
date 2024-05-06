@@ -1,4 +1,10 @@
 # musartin
+/*La consulta crea la base de datos con nombre musartin, crea las 3 tablas (autores, salas y cuadros).
+      También crea triggers para cuando se inserta, se borra o se actualiza un cuadro para contar la cantidad de cuadros que hay en cada sala.
+      Hay 1 un trigger que hace que cuando se borre un autor que tenga cuadros, en vez de borrarse los cuadros, cambie el id a 1 (el autor 'desconocido').
+      Hay otro trigger que hace que cuando se borre una sala con cuadros, cambie la ubicación de los cuadros (el sala_id) a 1 (la sala 'almacén').
+      Por último se insertan los datos demo.*/
+      
 /*CREATE DATABASE IF NOT EXISTS musartin;
         USE musartin;
 
@@ -51,8 +57,25 @@
             )
             WHERE sala_id = OLD.sala_id;
         END;
-        
 
+        CREATE TRIGGER actualizar_capacidad_sala_update
+        AFTER UPDATE ON cuadros
+        FOR EACH ROW
+        BEGIN
+                
+        UPDATE salas
+            SET cuadros_actuales = (
+            SELECT COUNT(*) FROM cuadros WHERE sala_id = OLD.sala_id
+            )
+            WHERE sala_id = OLD.sala_id;
+
+            UPDATE salas
+            SET cuadros_actuales = (
+                SELECT COUNT(*) FROM cuadros WHERE sala_id = NEW.sala_id
+            )
+            WHERE sala_id = NEW.sala_id;
+        END;
+        
         CREATE TRIGGER before_delete_sala
     BEFORE DELETE ON salas
     FOR EACH ROW
