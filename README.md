@@ -4,6 +4,7 @@
       Hay 1 un trigger que hace que cuando se borre un autor que tenga cuadros, en vez de borrarse los cuadros, cambie el id a 1 (el autor 'desconocido').
       Hay otro trigger que hace que cuando se borre una sala con cuadros, cambie la ubicación de los cuadros (el sala_id) a 1 (la sala 'almacén').
       Por último se insertan los datos demo.*/
+/*La sala almacén no se puede borrar (pero si modificar) */
       
 /*CREATE DATABASE IF NOT EXISTS musartin;
         USE musartin;
