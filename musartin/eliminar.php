@@ -8,16 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
         h1 {
             text-align: center;
+            margin-top: 50px;
+            color: #333;
         }
         .opciones-container {
             text-align: center;
+            margin-top: 30px;
         }
         .opcion {
             display: inline-block;
             text-align: center;
             margin-right: 20px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
         }
 
         .opcion img {
@@ -34,7 +46,26 @@
         }
 
         .opcion:hover {
-            background-color: #f0f0f0;
+            border-color: #ccc;
+        }
+
+        .opcion.selected {
+            border-color: #007bff;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -63,6 +94,7 @@
                     <span>Sala</span>
                 </label>
             </div>
+            <br>
             <input type="submit" value="Eliminar">
         </form>
     </div>

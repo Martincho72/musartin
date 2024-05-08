@@ -35,7 +35,7 @@ require("./ConexionBBDD/usarMusartin.php");
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
-            text-align: left;
+            text-align: center;
         }
         th {
             background-color: #f2f2f2;

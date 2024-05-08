@@ -16,7 +16,7 @@ require("./ConexionBBDD/usarMusartin.php");
             padding: 0;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 50px auto;
             background-color: #fff;
             padding: 20px;
@@ -34,7 +34,7 @@ require("./ConexionBBDD/usarMusartin.php");
         }
         th, td {
             padding: 10px;
-            text-align: left;
+            text-align: center;
             border-bottom: 1px solid #ddd;
         }
         th {
