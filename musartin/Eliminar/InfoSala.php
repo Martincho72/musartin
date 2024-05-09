@@ -78,52 +78,53 @@ require("./../ConexionBBDD/usarMusartin.php");
 <body>
     <a href="../eliminar.php"><div class="atras"><img src="../img/atras.png" alt="atrás"></div></a>
     <a href="../menuPrincipal.php"><div class="home"><img src="../img/home.png" alt="inicio"></div></a>
-<div class="container">
-    <form id="form1" name="form1" method="post" action="EliminarSala.php">
-        <h1>FORMULARIO DE BORRADO DE SALA</h1>
-        <label for="sala_id">ID SALA:</label>
-        <input type="text" name="sala_id" id="sala_id" readonly="readonly"
-               value="<?php echo $_REQUEST['listado']; ?>" />
-        <?php
+    <div class="container">
+        <form id="form1" name="form1" method="post" action="EliminarSala.php">
+            <h1>FORMULARIO DE BORRADO DE SALA</h1>
+            <label for="sala_id">ID SALA:</label>
+            <input type="text" name="sala_id" id="sala_id" readonly="readonly"
+                   value="<?php echo $_REQUEST['listado']; ?>" />
+            <?php
+            if(isset($_REQUEST['listado'])) {
+                $cod=$_REQUEST['listado'];
+                $consulta="SELECT * FROM salas WHERE sala_id='$cod';";
 
-        $cod=$_REQUEST['listado'];
-        $consulta="SELECT * FROM salas WHERE sala_id='$cod';";
+                if (!@$resultado= $mysqli->query($consulta)) {
+                    echo "Lo sentimos. La aplicación no funciona<br>"   ;
+                    echo "Error en la consulta $consulta <br>";
+                    echo "Num.error: ".$mysqli->errno."<br>";
+                    echo "Error: ".$mysqli->error."<br>";
+                    exit;
+                }
+                while ($fila=$resultado->fetch_assoc()) {
+                    echo "<label for='nombre'>Nombre:</label>
+                          <input type='text' name='nombre' id='nombre' readonly='readonly'
+                          value='".$fila['nombre']."' />
+                        ";
 
-        if (!@$resultado= $mysqli->query($consulta))
-        {
-            echo "Lo sentimos. La aplicación no funciona<br>"   ;
-            echo "Error en la consulta $consulta <br>";
-            echo "Num.error: ".$mysqli->errno."<br>";
-            echo "Error: ".$mysqli->error."<br>";
-            exit;
-        }
-        while ($fila=$resultado->fetch_assoc())
-        {
-            echo "<label for='nombre'>Nombre:</label>
-                  <input type='text' name='nombre' id='nombre' readonly='readonly'
-                  value='".$fila['nombre']."' />
-                ";
+                    echo "<label for='ubicacion'>Ubicación:</label>
+                          <input type='text' name='ubicacion' id='ubicacion' readonly='readonly'
+                          value='".$fila['ubicacion']."' />
+                        ";
 
-            echo "<label for='ubicacion'>Ubicación:</label>
-                  <input type='text' name='ubicacion' id='ubicacion' readonly='readonly'
-                  value='".$fila['ubicacion']."' />
-                ";
+                    echo "<label for='maximo_cuadros'>Capacidad Máxima:</label>
+                          <input type='number' name='maximo_cuadros' id='maximo_cuadros' readonly='readonly'
+                          value='".$fila['maximo_cuadros']."' />
+                        ";
 
-            echo "<label for='maximo_cuadros'>Capacidad Máxima:</label>
-                  <input type='number' name='maximo_cuadros' id='maximo_cuadros' readonly='readonly'
-                  value='".$fila['maximo_cuadros']."' />
-                ";
+                    echo "<label for='cuadros_actuales'>Número de Cuadros actuales:</label>
+                          <input type='number' name='cuadros_actuales' id='cuadros_actuales' readonly='readonly'
+                          value='".$fila['cuadros_actuales']."' />
+                        ";
+                }
+            } else {
+                header('Location: ./confirmarBorrar.php');
+            }
+            ?>
 
-            echo "<label for='cuadros_actuales'>Número de Cuadros actuales:</label>
-                  <input type='number' name='cuadros_actuales' id='cuadros_actuales' readonly='readonly'
-                  value='".$fila['cuadros_actuales']."' />
-                ";
-        }
-        ?>
-
-        <input type="submit" name="enviar" id="enviar" value="Borrar Sala" />
-        <input type="reset" name="borrar" id="borrar" value="Restablecer" />
-    </form>
-</div>
+            <input type="submit" name="enviar" id="enviar" value="Borrar Sala" />
+            <input type="reset" name="borrar" id="borrar" value="Restablecer" />
+        </form>
+    </div>
 </body>
 </html>

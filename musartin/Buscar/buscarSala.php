@@ -1,6 +1,6 @@
 <?php
-require("./../ConexionBBDD/SesionIniciada.php");
-require("./../ConexionBBDD/usarMusartin.php");
+    require("./../ConexionBBDD/SesionIniciada.php");
+    require("./../ConexionBBDD/usarMusartin.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -46,57 +46,62 @@ require("./../ConexionBBDD/usarMusartin.php");
         tr:hover {
             background-color: #f2f2f2;
         }
-        .atras{
+        .atras {
             position: absolute;
-            top:1%;
-            left:1%;
+            top: 1%;
+            left: 1%;
         }
-        .home{
+        .home {
             position: absolute;
-            top:1%;
-            right:1%;
+            top: 1%;
+            right: 1%;
         }
-        .atras img{
-            height:64px;
+        .atras img {
+            height: 64px;
             width: 64px;
         }
-        .home img{
-            height:64px;
+        .home img {
+            height: 64px;
             width: 64px;
         }
     </style>
 </head>
 <body>
-    <a href="../buscar.php"><div class="atras"><img src="../img/atras.png" alt="atrás"></div></a>
-    <a href="../menuPrincipal.php"><div class="home"><img src="../img/home.png" alt="inicio"></div></a>
+    <a href="../buscar.php">
+        <div class="atras"><img src="../img/atras.png" alt="atrás"></div>
+    </a>
+    <a href="../menuPrincipal.php">
+        <div class="home"><img src="../img/home.png" alt="inicio"></div>
+    </a>
     <div class="container">
         <h1>Resultado Búsqueda</h1>
         <?php
-        if(isset($_REQUEST['listado'])){
-            $sala_id = $_REQUEST['listado'];
+            if(isset($_REQUEST['listado'])){
+                $sala_id = $_REQUEST['listado'];
 
-            $consulta  = "SELECT * FROM salas WHERE sala_id = $sala_id";
-            $resultado = $mysqli->query($consulta);
+                $consulta  = "SELECT * FROM salas WHERE sala_id = $sala_id";
+                $resultado = $mysqli->query($consulta);
 
-            if ($resultado->num_rows > 0) {
-                echo "<table>";
-                echo "<tr><th>ID</th><th>Nombre</th><th>Ubicación</th><th>Cantidad máxima de cuadros</th><th>Cuadros Actuales</th></tr>";
+                if ($resultado->num_rows > 0) {
+                    echo "<table>";
+                    echo "<tr><th>ID</th><th>Nombre</th><th>Ubicación</th><th>Cantidad máxima de cuadros</th><th>Cuadros Actuales</th></tr>";
 
-                while ($fila = $resultado->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $fila['sala_id'] . "</td>";
-                    echo "<td>" . $fila['nombre'] . "</td>";
-                    echo "<td>" . $fila['ubicacion'] . "</td>";
-                    echo "<td>" . $fila['maximo_cuadros'] . "</td>";
-                    echo "<td>" . $fila['cuadros_actuales'] . "</td>";
-                    echo "</tr>";
+                    while ($fila = $resultado->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $fila['sala_id'] . "</td>";
+                        echo "<td>" . $fila['nombre'] . "</td>";
+                        echo "<td>" . $fila['ubicacion'] . "</td>";
+                        echo "<td>" . $fila['maximo_cuadros'] . "</td>";
+                        echo "<td>" . $fila['cuadros_actuales'] . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    echo "No se encontraron salas.";
                 }
-                echo "</table>";
             } else {
-                echo "No se encontraron salas.";
+                header('Location: ../buscar.php');
             }
-        }
-        $mysqli->close();
         ?>
     </div>
 </body>

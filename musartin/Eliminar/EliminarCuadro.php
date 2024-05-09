@@ -1,7 +1,6 @@
 <?php
 require("./../ConexionBBDD/SesionIniciada.php");
 require("./../ConexionBBDD/usarMusartin.php");
-$cuadro_id = $_REQUEST["cuadro_id"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -74,22 +73,26 @@ $cuadro_id = $_REQUEST["cuadro_id"];
 <body>
     <a href="../eliminar.php"><div class="atras"><img src="../img/atras.png" alt="atrás"></div></a>
     <a href="../menuPrincipal.php"><div class="home"><img src="../img/home.png" alt="inicio"></div></a>
-<div class="container">
-    <?php
-    
-$consulta = "DELETE FROM cuadros WHERE cuadro_id='$cuadro_id'";
+    <div class="container">
+        <?php
+        if(isset($_REQUEST["cuadro_id"])) {
+            $cuadro_id = $_REQUEST["cuadro_id"];
+            $consulta = "DELETE FROM cuadros WHERE cuadro_id='$cuadro_id'";
 
-if (!$resultado = $mysqli->query($consulta)) {
-    echo "Lo sentimos. La Aplicación no funciona<br>";
-    echo "Error en la consulta: ".$consulta."<br>";
-    echo "Num.error: ".$mysqli->errno."<br>";
-    echo "Error: ".$mysqli->error. "<br>";
-    exit;
-} else {
-    echo "<h1> Cuadro Borrado ✅</h1>";
-}
-echo  "<br> <a href=../eliminar.php class=boton>Volver</a>"
-?>
-</div>
+            if (!$resultado = $mysqli->query($consulta)) {
+                echo "Lo sentimos. La Aplicación no funciona<br>";
+                echo "Error en la consulta: ".$consulta."<br>";
+                echo "Num.error: ".$mysqli->errno."<br>";
+                echo "Error: ".$mysqli->error. "<br>";
+                exit;
+            } else {
+                echo "<h1> Cuadro Borrado ✅</h1>";
+            }
+            echo  "<br> <a href=../eliminar.php class=boton>Volver</a>";
+        } else {
+            header('Location: ./InfoCuadro.php');
+        }
+        ?>
+    </div>
 </body>
 </html>

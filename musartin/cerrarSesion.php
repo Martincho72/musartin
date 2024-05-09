@@ -51,11 +51,13 @@ session_destroy();
         a:hover {
             background-color: #45a049;
         }
-        </style>
+    </style>
 </head>
 <body>
-<div class="container">
-<h1> Se ha cerrado la Sesión ✅ </h1>
-<br> <a href='./index.html'>Volver</a>
+    <div class="container">
+        <h1>Se ha cerrado la Sesión ✅</h1>
+        <br> 
+        <a href='./index.html'>Volver</a>
+    </div>
 </body>
 </html>

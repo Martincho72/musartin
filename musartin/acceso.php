@@ -1,5 +1,5 @@
 <?php
-    require("./ConexionBBDD/SesionIniciada.php");
+require("./ConexionBBDD/SesionIniciada.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -48,10 +48,10 @@
         .button:hover {
             background-color: #45a049;
         }
-        .crear:hover{
+        .crear:hover {
             background-color: blue;
         }
-        .borrar:hover{
+        .borrar:hover {
             background-color: red;
         }
     </style>

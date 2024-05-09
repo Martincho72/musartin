@@ -57,37 +57,37 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Eliminar Base de Datos</h1>
-    <?php
-    $servidor = "localhost";
-    $usuario = "root";
-    $clave = "";
+    <div class="container">
+        <h1>Eliminar Base de Datos</h1>
+        <?php
+        $servidor = "localhost";
+        $usuario = "root";
+        $clave = "";
 
-    $mysqli = new mysqli($servidor, $usuario, $clave);
-    if ($mysqli->connect_errno) {
-        echo "<p>Fallo al conectar a MySQL: " . $mysqli->connect_error . " " . $mysqli->connect_errno . "</p>";
-        die("<p>Salida del programa. Fatal Error</p>");
-    }
-
-    $basedatos = "musartin";
-
-    $resultado = $mysqli->query("SHOW DATABASES LIKE '$basedatos'");
-    if ($resultado->num_rows == 1) {
-        $consulta = "DROP DATABASE $basedatos";
-
-        if (!$mysqli->query($consulta)) {
-            echo "<p>Error al borrar la Base de datos: " . $mysqli->error . "</p>";
-        } else {
-            echo "<p>La base de datos ha sido borrada exitosamente. ✅</p>";
+        $mysqli = new mysqli($servidor, $usuario, $clave);
+        if ($mysqli->connect_errno) {
+            echo "<p>Fallo al conectar a MySQL: " . $mysqli->connect_error . " " . $mysqli->connect_errno . "</p>";
+            die("<p>Salida del programa. Fatal Error</p>");
         }
-    } else {
-        echo "<p>NO se puede borrar la base de datos, no existe. ❌</p>";
-    }
 
-    $mysqli->close();
-    ?>
-    <a href="../acceso.php">Volver</a>
-</div>
+        $basedatos = "musartin";
+
+        $resultado = $mysqli->query("SHOW DATABASES LIKE '$basedatos'");
+        if ($resultado->num_rows == 1) {
+            $consulta = "DROP DATABASE $basedatos";
+
+            if (!$mysqli->query($consulta)) {
+                echo "<p>Error al borrar la Base de datos: " . $mysqli->error . "</p>";
+            } else {
+                echo "<p>La base de datos ha sido borrada exitosamente. ✅</p>";
+            }
+        } else {
+            echo "<p>NO se puede borrar la base de datos, no existe. ❌</p>";
+        }
+
+        $mysqli->close();
+        ?>
+        <a href="../acceso.php">Volver</a>
+    </div>
 </body>
 </html>

@@ -1,7 +1,6 @@
 <?php
 require("./../ConexionBBDD/SesionIniciada.php");
 require("./../ConexionBBDD/usarMusartin.php");
-$sala_id = $_REQUEST["sala_id"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -74,35 +73,40 @@ $sala_id = $_REQUEST["sala_id"];
 <body>
     <a href="../eliminar.php"><div class="atras"><img src="../img/atras.png" alt="atrás"></div></a>
     <a href="../menuPrincipal.php"><div class="home"><img src="../img/home.png" alt="inicio"></div></a>
-<div class="container">
-    <?php
+    <div class="container">
+        <?php
+        if(isset($_REQUEST["sala_id"])) {
+            $sala_id = $_REQUEST["sala_id"];
 
-$consulta_actualizar_cuadros = "UPDATE cuadros SET sala_id = 1 WHERE sala_id='$sala_id'";
-if (!$resultado_actualizar_cuadros = $mysqli->query($consulta_actualizar_cuadros)) {
-    echo "Lo sentimos. La Aplicación no funciona<br>";
-    echo "Error en la consulta de actualización de cuadros: ".$consulta_actualizar_cuadros."<br>";
-    echo "Num.error: ".$mysqli->errno."<br>";
-    echo "Error: ".$mysqli->error. "<br>";
-    exit;
-}
+            $consulta_actualizar_cuadros = "UPDATE cuadros SET sala_id = 1 WHERE sala_id='$sala_id'";
+            if (!$resultado_actualizar_cuadros = $mysqli->query($consulta_actualizar_cuadros)) {
+                echo "Lo sentimos. La Aplicación no funciona<br>";
+                echo "Error en la consulta de actualización de cuadros: ".$consulta_actualizar_cuadros."<br>";
+                echo "Num.error: ".$mysqli->errno."<br>";
+                echo "Error: ".$mysqli->error. "<br>";
+                exit;
+            }
 
-if($sala_id != 1){
-$consulta_eliminar_sala = "DELETE FROM salas WHERE sala_id='$sala_id'";
-if (!$resultado_eliminar_sala = $mysqli->query($consulta_eliminar_sala)) {
-    echo "Lo sentimos. La Aplicación no funciona<br>";
-    echo "Error en la consulta de eliminación de sala: ".$consulta_eliminar_sala."<br>";
-    echo "Num.error: ".$mysqli->errno."<br>";
-    echo "Error: ".$mysqli->error. "<br>";
-    exit;
-}
+            if($sala_id != 1) {
+                $consulta_eliminar_sala = "DELETE FROM salas WHERE sala_id='$sala_id'";
+                if (!$resultado_eliminar_sala = $mysqli->query($consulta_eliminar_sala)) {
+                    echo "Lo sentimos. La Aplicación no funciona<br>";
+                    echo "Error en la consulta de eliminación de sala: ".$consulta_eliminar_sala."<br>";
+                    echo "Num.error: ".$mysqli->errno."<br>";
+                    echo "Error: ".$mysqli->error. "<br>";
+                    exit;
+                }
 
-echo "<h1> Sala eliminada correctamente ✅ </h1>";
-} else{
-    echo "<h1> Por favor, no intente borrar </h1>";
-    echo "<h1> El Almacén / Sala Principal ❌</h1>";
-}
-echo  "<br> <a href=../eliminar.php class=boton>Volver</a>";
-    ?>
-</div>
+                echo "<h1> Sala eliminada correctamente ✅ </h1>";
+            } else {
+                echo "<h1> Por favor, no intente borrar </h1>";
+                echo "<h1> El Almacén / Sala Principal ❌</h1>";
+            }
+            echo  "<br> <a href=../eliminar.php class=boton>Volver</a>";
+        } else {
+            header('Location: ./InfoSala.php');
+        }
+        ?>
+    </div>
 </body>
 </html>

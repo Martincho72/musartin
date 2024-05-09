@@ -8,8 +8,7 @@ require("./../ConexionBBDD/usarMusartin.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertar Sala</title>
-</head>
-<style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -74,30 +73,31 @@ require("./../ConexionBBDD/usarMusartin.php");
 <body>
     <a href="../insertar.php"><div class="atras"><img src="../img/atras.png" alt="atrás"></div></a>
     <a href="../menuPrincipal.php"><div class="home"><img src="../img/home.png" alt="inicio"></div></a>
-<div class="container">
-    <h1>Insertar Sala</h1>
-    <?php
-    $nombre_sala = $_REQUEST["nombre_sala"];
-    $ubicacion = $_REQUEST["ubicacion"];
-    $capacidadMaxima = $_REQUEST["capacidad_maxima"];
-    
-    // Escapar caracteres especiales para evitar inyección SQL
-    $nombre_sala = $mysqli->real_escape_string($nombre_sala);
-    $ubicacion = $mysqli->real_escape_string($ubicacion);
-    
-    $consulta = "INSERT INTO salas (sala_id, nombre, ubicacion, maximo_cuadros) VALUES
-                 (null, '$nombre_sala', '$ubicacion', '$capacidadMaxima');";
-    
-    if (!$resultado = $mysqli->query($consulta)) {
-        echo "Lo sentimos. La Aplicación no funciona<br>";
-        echo "Error en la consulta: ".$consulta."<br>";
-        echo "Num.error: ".$mysqli->errno."<br>";
-        echo "Error: ".$mysqli->error. "<br>";
-        exit;
-    } else {
-        echo "<p> Sala Insertada </p>";
-    }
-    echo "<br> <a href=../insertar.php class=boton>Volver</a>";
-    ?>
+    <div class="container">
+        <h1>Insertar Sala</h1>
+        <?php
+        if(isset($_REQUEST["nombre_sala"]) && isset($_REQUEST["ubicacion"]) && isset($_REQUEST["capacidad_maxima"])){
+            $nombre_sala = $_REQUEST["nombre_sala"];
+            $ubicacion = $_REQUEST["ubicacion"];
+            $capacidadMaxima = $_REQUEST["capacidad_maxima"];
+            
+            $consulta = "INSERT INTO salas (sala_id, nombre, ubicacion, maximo_cuadros) VALUES
+                         (null, '$nombre_sala', '$ubicacion', '$capacidadMaxima');";
+            
+            if (!$resultado = $mysqli->query($consulta)) {
+                echo "Lo sentimos. La Aplicación no funciona<br>";
+                echo "Error en la consulta: ".$consulta."<br>";
+                echo "Num.error: ".$mysqli->errno."<br>";
+                echo "Error: ".$mysqli->error. "<br>";
+                exit;
+            } else {
+                echo "<p> Sala Insertada </p>";
+            }
+            echo "<br> <a href=../insertar.php class=boton>Volver</a>";
+        } else {
+            header('Location: ../insertar.php');
+        }
+        ?>
+    </div>
 </body>
 </html>

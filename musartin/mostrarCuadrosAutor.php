@@ -97,6 +97,8 @@ require("./ConexionBBDD/usarMusartin.php");
         } else {
             echo "No se encontraron cuadros para este autor.";
         }
+    } else{
+        header('Location: ./cuadrosAutor.php');
     }
     ?>
 </div>

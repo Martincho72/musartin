@@ -53,22 +53,22 @@ require("./ConexionBBDD/usarMusartin.php");
         input[type="submit"]:hover {
             background-color: #45a049;
         }
-        .atras{
+        .atras {
             position: absolute;
-            top:1%;
-            left:1%;
+            top: 1%;
+            left: 1%;
         }
-        .home{
+        .home {
             position: absolute;
-            top:1%;
-            right:1%;
+            top: 1%;
+            right: 1%;
         }
-        .atras img{
-            height:64px;
+        .atras img {
+            height: 64px;
             width: 64px;
         }
-        .home img{
-            height:64px;
+        .home img {
+            height: 64px;
             width: 64px;
         }
     </style>

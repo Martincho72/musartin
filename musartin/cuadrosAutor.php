@@ -80,23 +80,23 @@
 <body>
     <a href="./menuPrincipal.php"><div class="atras"><img src="./img/atras.png" alt="atrás"></div></a>
     <a href="./menuPrincipal.php"><div class="home"><img src="./img/home.png" alt="inicio"></div></a>
-<div class="container">
-    <h1>Seleccione un autor</h1>
-    <form id="form1" name="form1" method="post" action="mostrarCuadrosAutor.php">
-        <label for="listado">Buscar cuadros del autor:</label>
-        <select name="listado" id="listado">
-            <?php
-            mysqli_report(MYSQLI_REPORT_ERROR);
-            $consulta ="SELECT autor_id, nombre FROM autores ;";
-            $resultado=$mysqli->query($consulta);
-            while ($fila = $resultado ->fetch_assoc()){
-                $n=$fila["nombre"];
-                echo ("<option value=".$fila['autor_id'].">".$n."</option>");
-            }
-            ?>
-        </select>
-        <input type="submit" name="enviar" id="enviar" value="Enviar" />
-    </form>
-</div>
+    <div class="container">
+        <h1>Seleccione un autor</h1>
+        <form id="form1" name="form1" method="post" action="mostrarCuadrosAutor.php">
+            <label for="listado">Buscar cuadros del autor:</label>
+            <select name="listado" id="listado">
+                <?php
+                mysqli_report(MYSQLI_REPORT_ERROR);
+                $consulta ="SELECT autor_id, nombre FROM autores ;";
+                $resultado=$mysqli->query($consulta);
+                while ($fila = $resultado ->fetch_assoc()){
+                    $n=$fila["nombre"];
+                    echo ("<option value=".$fila['autor_id'].">".$n."</option>");
+                }
+                ?>
+            </select>
+            <input type="submit" name="enviar" id="enviar" value="Enviar" />
+        </form>
+    </div>
 </body>
 </html>

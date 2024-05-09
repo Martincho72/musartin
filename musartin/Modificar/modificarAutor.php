@@ -1,10 +1,6 @@
 <?php
 require("./../ConexionBBDD/SesionIniciada.php");
 require("./../ConexionBBDD/usarMusartin.php");
-$autor_id = $_REQUEST["autor_id"];
-$nombre_autor = $_REQUEST["nombre"];
-$fecha_nacimiento = $_REQUEST["fecha_nacimiento"];
-$nacionalidad = $_REQUEST["nacionalidad"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -54,21 +50,21 @@ $nacionalidad = $_REQUEST["nacionalidad"];
         .boton:hover {
             background-color: #45a049;
         }
-        .atras{
+        .atras {
             position: absolute;
             top:1%;
             left:1%;
         }
-        .home{
+        .home {
             position: absolute;
             top:1%;
             right:1%;
         }
-        .atras img{
+        .atras img {
             height:64px;
             width: 64px;
         }
-        .home img{
+        .home img {
             height:64px;
             width: 64px;
         }
@@ -77,21 +73,29 @@ $nacionalidad = $_REQUEST["nacionalidad"];
 <body>
     <a href="../modificar.php"><div class="atras"><img src="../img/atras.png" alt="atrás"></div></a>
     <a href="../menuPrincipal.php"><div class="home"><img src="../img/home.png" alt="inicio"></div></a>
-<div class="container">
-    <?php
-$consulta = "UPDATE autores SET nombre='$nombre_autor', fecha_nacimiento='$fecha_nacimiento', nacionalidad='$nacionalidad' WHERE autor_id='$autor_id'";
+    <div class="container">
+        <?php
+        if(isset($_REQUEST["autor_id"]) && isset($_REQUEST["nombre"]) && isset($_REQUEST["fecha_nacimiento"]) && isset($_REQUEST["nacionalidad"])) {
+            $autor_id = $_REQUEST["autor_id"];
+            $nombre_autor = $_REQUEST["nombre"];
+            $fecha_nacimiento = $_REQUEST["fecha_nacimiento"];
+            $nacionalidad = $_REQUEST["nacionalidad"];
+            $consulta = "UPDATE autores SET nombre='$nombre_autor', fecha_nacimiento='$fecha_nacimiento', nacionalidad='$nacionalidad' WHERE autor_id='$autor_id'";
 
-if (!$resultado = $mysqli->query($consulta)) {
-    echo "Lo sentimos. La Aplicación no funciona<br>";
-    echo "Error en la consulta: ".$consulta."<br>";
-    echo "Num.error: ".$mysqli->errno."<br>";
-    echo "Error: ".$mysqli->error. "<br>";
-    exit;
-} else {
-    echo "<h1> Autor Modificado ✅ </h1>";
-}
-echo  "<br> <a href=../modificar.php class=boton>Volver</a>"
-?>
-</div>
+            if (!$resultado = $mysqli->query($consulta)) {
+                echo "Lo sentimos. La Aplicación no funciona<br>";
+                echo "Error en la consulta: ".$consulta."<br>";
+                echo "Num.error: ".$mysqli->errno."<br>";
+                echo "Error: ".$mysqli->error. "<br>";
+                exit;
+            } else {
+                echo "<h1> Autor Modificado ✅ </h1>";
+            }
+            echo  "<br> <a href=../modificar.php class=boton>Volver</a>";
+        } else {
+            header('Location: ./InfoAutor.php');
+        }
+        ?>
+    </div>
 </body>
 </html>

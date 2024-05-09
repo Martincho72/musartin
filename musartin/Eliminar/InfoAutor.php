@@ -78,47 +78,48 @@ require("./../ConexionBBDD/usarMusartin.php");
 <body>
     <a href="../eliminar.php"><div class="atras"><img src="../img/atras.png" alt="atrás"></div></a>
     <a href="../menuPrincipal.php"><div class="home"><img src="../img/home.png" alt="inicio"></div></a>
-<div class="container">
-    <form id="form1" name="form1" method="post" action="EliminarAutor.php">
-        <h1>FORMULARIO BORRAR AUTOR</h1>
-        <label for="autor_id">ID AUTOR:</label>
-        <input type="text" name="autor_id" id="autor_id" readonly="readonly"
-               value="<?php echo $_REQUEST['listado']; ?>" />
-        <?php
+    <div class="container">
+        <form id="form1" name="form1" method="post" action="EliminarAutor.php">
+            <h1>FORMULARIO BORRAR AUTOR</h1>
+            <label for="autor_id">ID AUTOR:</label>
+            <input type="text" name="autor_id" id="autor_id" readonly="readonly"
+                   value="<?php echo $_REQUEST['listado']; ?>" />
+            <?php
+            if(isset($_REQUEST['listado'])) {
+                $cod=$_REQUEST['listado'];
+                $consulta="SELECT * FROM autores WHERE autor_id='$cod';";
 
-        $cod=$_REQUEST['listado'];
-        $consulta="SELECT * FROM autores WHERE autor_id='$cod';";
+                if (!@$resultado= $mysqli->query($consulta)) {
+                    echo "Lo sentimos. La aplicación no funciona<br>"   ;
+                    echo "Error en la consulta $consulta <br>";
+                    echo "Num.error: ".$mysqli->errno."<br>";
+                    echo "Error: ".$mysqli->error."<br>";
+                    exit;
+                }
+                while ($fila=$resultado->fetch_assoc()) {
+                    echo "<label for='nombre'>Nombre</label>
+                          <input type='text' name='nombre' id='nombre' readonly='readonly'
+                          value='".$fila['nombre']."' />
+                        ";
 
-        if (!@$resultado= $mysqli->query($consulta))
-        {
-            echo "Lo sentimos. La aplicación no funciona<br>"   ;
-            echo "Error en la consulta $consulta <br>";
-            echo "Num.error: ".$mysqli->errno."<br>";
-            echo "Error: ".$mysqli->error."<br>";
-            exit;
-        }
-        while ($fila=$resultado->fetch_assoc())
-        {
-            echo "<label for='nombre'>Nombre</label>
-                  <input type='text' name='nombre' id='nombre' readonly='readonly'
-                  value='".$fila['nombre']."' />
-                ";
+                    echo "<label for='fecha_nacimiento'>Fecha Nacimiento</label>
+                          <input type='date' name='fecha_nacimiento' id='fecha_nacimiento' readonly='readonly'
+                          value='".$fila['fecha_nacimiento']."' />
+                        ";
 
-            echo "<label for='fecha_nacimiento'>Fecha Nacimiento</label>
-                  <input type='date' name='fecha_nacimiento' id='fecha_nacimiento' readonly='readonly'
-                  value='".$fila['fecha_nacimiento']."' />
-                ";
+                    echo "<label for='nacionalidad'>Nacionalidad</label>
+                          <input type='text' name='nacionalidad' id='nacionalidad' readonly='readonly'
+                          value='".$fila['nacionalidad']."' />
+                        ";
+                }
+            } else {
+                header('Location: ./confirmarBorrar.php');
+            }
+            ?>
 
-            echo "<label for='nacionalidad'>Nacionalidad</label>
-                  <input type='text' name='nacionalidad' id='nacionalidad' readonly='readonly'
-                  value='".$fila['nacionalidad']."' />
-                ";
-        }
-        ?>
-
-        <input type="submit" name="enviar" id="enviar" value="Borrar Autor" />
-        <input type="reset" name="borrar" id="borrar" value="Restablecer" />
-    </form>
-</div>
+            <input type="submit" name="enviar" id="enviar" value="Borrar Autor" />
+            <input type="reset" name="borrar" id="borrar" value="Restablecer" />
+        </form>
+    </div>
 </body>
 </html>

@@ -97,6 +97,8 @@ require("./ConexionBBDD/usarMusartin.php");
         } else {
             echo "No se encontraron cuadros para esta sala.";
         }
+    } else {
+        header('Location: ./cuadrosSala.php');
     }
     ?>
 </div>

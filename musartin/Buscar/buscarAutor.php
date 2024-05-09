@@ -1,6 +1,6 @@
 <?php
-require("./../ConexionBBDD/SesionIniciada.php");
-require("./../ConexionBBDD/usarMusartin.php");
+    require("./../ConexionBBDD/SesionIniciada.php");
+    require("./../ConexionBBDD/usarMusartin.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -67,35 +67,40 @@ require("./../ConexionBBDD/usarMusartin.php");
     </style>
 </head>
 <body>
-    <a href="../buscar.php"><div class="atras"><img src="../img/atras.png" alt="atrás"></div></a>
-    <a href="../menuPrincipal.php"><div class="home"><img src="../img/home.png" alt="inicio"></div></a>
+    <a href="../buscar.php">
+        <div class="atras"><img src="../img/atras.png" alt="atrás"></div>
+    </a>
+    <a href="../menuPrincipal.php">
+        <div class="home"><img src="../img/home.png" alt="inicio"></div>
+    </a>
     <div class="container">
         <h1>Resultado Búsqueda</h1>
         <?php
-        if(isset($_REQUEST['listado'])){
-            $autor_id = $_REQUEST['listado'];
+            if(isset($_REQUEST['listado'])){
+                $autor_id = $_REQUEST['listado'];
 
-            $consulta  = "SELECT * FROM autores WHERE autor_id = $autor_id";
-            $resultado = $mysqli->query($consulta);
+                $consulta  = "SELECT * FROM autores WHERE autor_id = $autor_id";
+                $resultado = $mysqli->query($consulta);
 
-            if ($resultado->num_rows > 0) {
-                echo "<table>";
-                echo "<tr><th>ID</th><th>Nombre</th><th>Fecha Nacimiento</th><th>Nacionalidad</th></tr>";
+                if ($resultado->num_rows > 0) {
+                    echo "<table>";
+                    echo "<tr><th>ID</th><th>Nombre</th><th>Fecha Nacimiento</th><th>Nacionalidad</th></tr>";
 
-                while ($fila = $resultado->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $fila['autor_id'] . "</td>";
-                    echo "<td>" . $fila['nombre'] . "</td>";
-                    echo "<td>" . $fila['fecha_nacimiento'] . "</td>";
-                    echo "<td>" . $fila['nacionalidad'] . "</td>";
-                    echo "</tr>";
+                    while ($fila = $resultado->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $fila['autor_id'] . "</td>";
+                        echo "<td>" . $fila['nombre'] . "</td>";
+                        echo "<td>" . $fila['fecha_nacimiento'] . "</td>";
+                        echo "<td>" . $fila['nacionalidad'] . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    echo "No se encontraron autores.";
                 }
-                echo "</table>";
-            } else {
-                echo "No se encontraron autores.";
+            } else{
+                header('Location: ../buscar.php');
             }
-        }
-        $mysqli->close();
         ?>
     </div>
 </body>

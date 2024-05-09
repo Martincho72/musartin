@@ -17,7 +17,7 @@
         }
         .container {
             max-width: 600px;
-            margin: 100px auto;
+            margin: 20px auto auto;
             padding: 20px;
             text-align: center;
             background-color: #fff;
@@ -47,7 +47,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
+        
         a:hover, .btn:hover {
             background-color: #45a049;
         }

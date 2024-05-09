@@ -1,6 +1,6 @@
 <?php
-    require("./ConexionBBDD/SesionIniciada.php");
-    require("./ConexionBBDD/usarMusartin.php");
+require("./ConexionBBDD/SesionIniciada.php");
+require("./ConexionBBDD/usarMusartin.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -46,22 +46,22 @@
         tr:hover {
             background-color: #f2f2f2;
         }
-        .atras{
+        .atras {
             position: absolute;
-            top:1%;
-            left:1%;
+            top: 1%;
+            left: 1%;
         }
-        .home{
+        .home {
             position: absolute;
-            top:1%;
-            right:1%;
+            top: 1%;
+            right: 1%;
         }
-        .atras img{
-            height:64px;
+        .atras img {
+            height: 64px;
             width: 64px;
         }
-        .home img{
-            height:64px;
+        .home img {
+            height: 64px;
             width: 64px;
         }
     </style>
