@@ -2,7 +2,7 @@
     session_start();
     
     if (!isset($_SESSION['usuario'])) {
-        header('Location: ../iniciarSesion.html');
+        header('Location: ../iniciarSesion.php');
     }
 ?>
 <!DOCTYPE html>
@@ -116,9 +116,7 @@
                 FOR EACH ROW
                 BEGIN
                     UPDATE salas
-                    SET cuadros_actuales = (
-                        SELECT COUNT(*) FROM cuadros WHERE sala_id = NEW.sala_id
-                    )
+                    SET cuadros_actuales = (SELECT COUNT(*) FROM cuadros WHERE sala_id = NEW.sala_id)
                     WHERE sala_id = NEW.sala_id;
                 END;
 
@@ -127,9 +125,7 @@
                 FOR EACH ROW
                 BEGIN
                     UPDATE salas
-                    SET cuadros_actuales = (
-                        SELECT COUNT(*) FROM cuadros WHERE sala_id = OLD.sala_id
-                    )
+                    SET cuadros_actuales = (SELECT COUNT(*) FROM cuadros WHERE sala_id = OLD.sala_id)
                     WHERE sala_id = OLD.sala_id;
                 END;
 
@@ -139,15 +135,11 @@
                 BEGIN
                     
                     UPDATE salas
-                        SET cuadros_actuales = (
-                        SELECT COUNT(*) FROM cuadros WHERE sala_id = OLD.sala_id
-                        )
+                        SET cuadros_actuales = (SELECT COUNT(*) FROM cuadros WHERE sala_id = OLD.sala_id)
                         WHERE sala_id = OLD.sala_id;
 
                     UPDATE salas
-                    SET cuadros_actuales = (
-                        SELECT COUNT(*) FROM cuadros WHERE sala_id = NEW.sala_id
-                    )
+                    SET cuadros_actuales = (SELECT COUNT(*) FROM cuadros WHERE sala_id = NEW.sala_id)
                     WHERE sala_id = NEW.sala_id;
                 END;
 
@@ -160,13 +152,13 @@
                     WHERE sala_id = OLD.sala_id;
                 END;
 
-                CREATE TRIGGER before_delete_autores
-                BEFORE DELETE ON autores
+                CREATE TRIGGER actualizar_cuadros_al_borrar_autor
+                AFTER DELETE ON autores
                 FOR EACH ROW
                 BEGIN
-                    UPDATE cuadros
-                    SET autor_id = 1
-                    WHERE autor_id = OLD.autor_id;
+
+                UPDATE salas
+                    SET cuadros_actuales = (SELECT COUNT(*) FROM cuadros WHERE sala_id = salas.sala_id);
                 END;
 
                 INSERT INTO autores (autor_id, nombre, fecha_nacimiento, nacionalidad) VALUES
@@ -202,4 +194,14 @@
         ?>
     </div>
 </body>
+<!--    
+    CREATE TRIGGER before_delete_autores
+                BEFORE DELETE ON autores
+                FOR EACH ROW
+                BEGIN
+                    UPDATE cuadros
+                    SET autor_id = 1
+                    WHERE autor_id = OLD.autor_id;
+                END;
+    --->
 </html>

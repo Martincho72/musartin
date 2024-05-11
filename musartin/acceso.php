@@ -1,5 +1,5 @@
 <?php
-require("./ConexionBBDD/SesionIniciada.php");
+    require("./ConexionBBDD/SesionIniciada.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">

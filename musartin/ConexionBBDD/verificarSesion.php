@@ -12,7 +12,7 @@ if (isset($_REQUEST['usuario']) && isset($_REQUEST['clave'])) {
         header('Location: ../acceso.php');
     } else {
         echo "<script>alert('Usuario o contraseña incorrectos');</script>";
-        echo "<script>window.location.href = '../iniciarSesion.html';</script>";
+        echo "<script>window.location.href = '../iniciarSesion.php';</script>";
     }
 }
 ?>

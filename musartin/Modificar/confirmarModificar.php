@@ -1,6 +1,6 @@
 <?php
-require("./../ConexionBBDD/SesionIniciada.php");
-require("./../ConexionBBDD/usarMusartin.php");
+    require("./../ConexionBBDD/SesionIniciada.php");
+    require("./../ConexionBBDD/usarMusartin.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">

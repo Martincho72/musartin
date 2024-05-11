@@ -1,21 +1,6 @@
 <?php
-require("./../ConexionBBDD/SesionIniciada.php");
-require("./../ConexionBBDD/usarMusartin.php");
-
-/*Función para verificar si una sala está llena*/
-function salaLlena($sala_id) {
-    global $mysqli;
-    $consulta_capacidad = "SELECT cuadros_actuales, maximo_cuadros FROM salas WHERE sala_id = $sala_id";
-    $resultado_capacidad = $mysqli->query($consulta_capacidad);
-    if (!$resultado_capacidad) {
-        echo "Error al obtener la capacidad de la sala";
-        exit;
-    }
-    $fila_capacidad = $resultado_capacidad->fetch_assoc();
-    $capacidad_actual = $fila_capacidad['cuadros_actuales'];
-    $capacidad_maxima = $fila_capacidad['maximo_cuadros'];
-    return $capacidad_actual >= $capacidad_maxima;
-}
+    require("./../ConexionBBDD/SesionIniciada.php");
+    require("./../ConexionBBDD/usarMusartin.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -86,12 +71,31 @@ function salaLlena($sala_id) {
     </style>
 </head>
 <body>
-    <a href="../insertar.php"><div class="atras"><img src="../img/atras.png" alt="atrás"></div></a>
-    <a href="../menuPrincipal.php"><div class="home"><img src="../img/home.png" alt="inicio"></div></a>
+    <a href="../insertar.php">
+        <div class="atras"><img src="../img/atras.png" alt="atrás"></div>
+    </a>
+    <a href="../menuPrincipal.php">
+        <div class="home"><img src="../img/home.png" alt="inicio"></div>
+    </a>
 
     <div class="container">
         <h1>Insertar Cuadro</h1>
         <?php
+        /*Función para verificar si una sala está llena*/
+        function salaLlena($sala_id) {
+            global $mysqli;
+            $consulta_capacidad = "SELECT cuadros_actuales, maximo_cuadros FROM salas WHERE sala_id = $sala_id";
+            $resultado_capacidad = $mysqli->query($consulta_capacidad);
+            if (!$resultado_capacidad) {
+                echo "Error al obtener la capacidad de la sala";
+                exit;
+            }
+            $fila_capacidad = $resultado_capacidad->fetch_assoc();
+            $capacidad_actual = $fila_capacidad['cuadros_actuales'];
+            $capacidad_maxima = $fila_capacidad['maximo_cuadros'];
+            return $capacidad_actual >= $capacidad_maxima;
+        }
+        
         if(isset($_REQUEST["titulo_cuadro"]) && isset($_REQUEST["fecha_creacion"]) && isset($_REQUEST["tecnica"]) && isset($_REQUEST["estilo"]) && isset($_REQUEST["autor_id"]) && isset($_REQUEST["sala_id"])){
             $titulo_cuadro = $_REQUEST["titulo_cuadro"];
             $fecha_creacion = $_REQUEST["fecha_creacion"];
@@ -100,6 +104,7 @@ function salaLlena($sala_id) {
             $descripcion = $_REQUEST["descripcion"];
             $autor_id = $_REQUEST["autor_id"];
             $sala_id = $_REQUEST["sala_id"];
+            
             if (salaLlena($sala_id)) {
                 if (salaLlena(1)) {
                     echo "<p> Lo sentimos, tanto la sala como el almacén están llenos. ❌ </p>";
