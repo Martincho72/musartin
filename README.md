@@ -1,9 +1,9 @@
 # musartin
-/*La consulta crea la base de datos con nombre musartin, crea las 3 tablas (autores, salas y cuadros).
+La consulta crea la base de datos con nombre musartin, crea las 3 tablas (autores, salas y cuadros).
       También crea triggers para cuando se inserta, se borra o se actualiza un cuadro para contar la cantidad de cuadros que hay en cada sala.
       Hay un trigger que hace que cuando se borre una sala con cuadros, cambie la ubicación de los cuadros (el sala_id) a 1 (la sala 'almacén').
       Si se borra un autor, sus cuadros también se borran.
-      Por último se insertan los datos demo.*/
+      Por último se insertan los datos demo.
 /*La sala almacén no se puede borrar (pero si modificar) */
       
 /*CREATE DATABASE IF NOT EXISTS musartin;
