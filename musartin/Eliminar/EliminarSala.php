@@ -78,33 +78,27 @@
         if(isset($_REQUEST["sala_id"])) {
             $sala_id = $_REQUEST["sala_id"];
 
-            // Obtener la cantidad de cuadros en la sala que se va a eliminar
             $consulta = "SELECT cuadros_actuales FROM salas WHERE sala_id='$sala_id'";
             $resultado = $mysqli->query($consulta);
             $fila = $resultado->fetch_assoc();
             $cantidad_cuadros_en_sala = $fila['cuadros_actuales'];
 
-            // Obtener la capacidad total del almacén
             $consulta_capacidad_almacen = "SELECT maximo_cuadros FROM salas WHERE sala_id=1";
             $resultado_capacidad_almacen = $mysqli->query($consulta_capacidad_almacen);
             $fila_capacidad_almacen = $resultado_capacidad_almacen->fetch_assoc();
             $capacidad_total_almacen = $fila_capacidad_almacen['maximo_cuadros'];
 
-            // Obtener la cantidad actual de cuadros en el almacén
             $consulta_cuadros_en_almacen = "SELECT cuadros_actuales FROM salas WHERE sala_id=1";
             $resultado_cuadros_en_almacen = $mysqli->query($consulta_cuadros_en_almacen);
             $fila_cuadros_en_almacen = $resultado_cuadros_en_almacen->fetch_assoc();
             $cantidad_cuadros_en_almacen = $fila_cuadros_en_almacen['cuadros_actuales'];
 
-            // Calcular la cantidad total de cuadros después de eliminar la sala
             $cantidad_total_cuadros_despues_eliminar = $cantidad_cuadros_en_almacen + $cantidad_cuadros_en_sala;
 
-            // Verificar si la cantidad total de cuadros excede la capacidad total del almacén
             if($sala_id != 1 && $cantidad_total_cuadros_despues_eliminar > $capacidad_total_almacen) {
                 echo "<h1>No se puede eliminar la sala porque los cuadros de la sala no caben en el almacén ❌</h1>";
                 echo  "<br> <a href=../eliminar.php class=boton>Volver</a>";
             } elseif ($sala_id != 1) {
-                // Actualizar la sala de los cuadros a la sala de almacenamiento
                 $consulta_actualizar_cuadros = "UPDATE cuadros SET sala_id = 1 WHERE sala_id='$sala_id'";
                 if (!$resultado_actualizar_cuadros = $mysqli->query($consulta_actualizar_cuadros)) {
                     echo "Lo sentimos. La Aplicación no funciona<br>";

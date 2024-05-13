@@ -23,6 +23,9 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        h4{
+            color: red;
+        }
         form {
             text-align: center;
         }
@@ -81,6 +84,7 @@
     <div class="container">
         <form id="form1" name="form1" method="post" action="EliminarAutor.php">
             <h1>FORMULARIO BORRAR AUTOR</h1>
+            <h4>¡ATENCIÓN, SI BORRA UN AUTOR, TAMBIÉN SE BORRARÁN SUS CUADROS!</h4>
             <label for="autor_id">ID AUTOR:</label>
             <input type="text" name="autor_id" id="autor_id" readonly="readonly"
                    value="<?php echo $_REQUEST['listado']; ?>" />

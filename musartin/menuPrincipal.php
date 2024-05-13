@@ -1,5 +1,6 @@
 <?php
     require("./ConexionBBDD/SesionIniciada.php");
+    require("./ConexionBBDD/existeBBDD.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,7 +37,7 @@
             font-size: 20px;
         }
 
-        a, .btn {
+        .btn {
             display: block;
             margin: 20px auto;
             padding: 15px 20px;
@@ -75,10 +76,19 @@
         .btn-blue:hover {
             background-color: #0056b3;
         }
-
+        .atras{
+            position: absolute;
+            top:1%;
+            left:1%;
+        }
+        .atras img{
+            height:64px;
+            width: 64px;
+        }
     </style>
 </head>
 <body>
+<a href="./acceso.php"><div class="atras"><img src="./img/atras.png" alt="atrás"></div></a>
 <div class="container">
     <h1>Base de datos Musartin</h1>
     <h2>¿Qué desea hacer?</h2>

@@ -1,9 +1,9 @@
 <?php
-    session_start();
-    
-    if (!isset($_SESSION['usuario'])) {
-        header('Location: ../iniciarSesion.php');
-    }
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header('Location: ../iniciarSesion.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -64,28 +64,34 @@
         $usuario = "root";
         $clave = "";
 
-        $mysqli = new mysqli($servidor, $usuario, $clave);
-        if ($mysqli->connect_errno) {
-            echo "<p>Fallo al conectar a MySQL: " . $mysqli->connect_error . " " . $mysqli->connect_errno . "</p>";
-            die("<p>Salida del programa. Fatal Error</p>");
-        }
+        try {
+            $mysqli = new mysqli($servidor, $usuario, $clave);
 
-        $basedatos = "musartin";
-
-        $resultado = $mysqli->query("SHOW DATABASES LIKE '$basedatos'");
-        if ($resultado->num_rows == 1) {
-            $consulta = "DROP DATABASE $basedatos";
-
-            if (!$mysqli->query($consulta)) {
-                echo "<p>Error al borrar la Base de datos: " . $mysqli->error . "</p>";
-            } else {
-                echo "<p>La base de datos ha sido borrada exitosamente. ✅</p>";
+            if ($mysqli->connect_errno) {
+                throw new Exception("Fallo al conectar a MySQL: " . $mysqli->connect_error . " " . $mysqli->connect_errno);
+                echo "<script>window.location.href = '../acceso.php';</script>";
             }
-        } else {
-            echo "<p>NO se puede borrar la base de datos, no existe. ❌</p>";
-        }
 
-        $mysqli->close();
+            $basedatos = "musartin";
+
+            $resultado = $mysqli->query("SHOW DATABASES LIKE '$basedatos'");
+            if ($resultado->num_rows == 1) {
+                $consulta = "DROP DATABASE $basedatos";
+
+                if (!$mysqli->query($consulta)) {
+                    throw new Exception("Error al borrar la Base de datos: " . $mysqli->error);
+                } else {
+                    echo "<p>La base de datos ha sido borrada exitosamente. ✅</p>";
+                }
+            } else {
+                echo "<p>NO se puede borrar la base de datos, no existe. ❌</p>";
+            }
+
+            $mysqli->close();
+        } catch (Exception $e) {
+            echo "<script>alert('" . $e->getMessage() . "');</script>";
+            echo "<script>window.location.href = '../acceso.php';</script>";
+        }
         ?>
         <a href="../acceso.php">Volver</a>
     </div>

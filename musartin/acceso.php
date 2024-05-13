@@ -60,7 +60,7 @@
     <h1>MENÚ PRINCIPAL</h1>
     <h2>¡Bienvenido a Musartin!</h2>
     <div class="container">
-        <a href="./ConexionBBDD/existeBBDD.php" class="button acceder">Acceder a la base de datos</a>
+        <a href="./menuPrincipal.php" class="button acceder">Acceder a la base de datos</a>
         <a href="./Demo/CrearBD.php" class="button crear">Crear la base de datos (+ datos demo)</a>
         <a href="./Demo/BorrarBD.php" class="button borrar">Borrar la base de datos</a>
     </div>

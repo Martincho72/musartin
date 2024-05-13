@@ -15,6 +15,9 @@
             margin: 0;
             padding: 0;
         }
+        h4{
+            color: red;
+        }
         .container {
             max-width: 600px;
             margin: 100px auto;
@@ -81,6 +84,8 @@
     <div class="container">
         <form id="form1" name="form1" method="post" action="EliminarSala.php">
             <h1>FORMULARIO DE BORRADO DE SALA</h1>
+            <br>
+            <h4>¡ATENCIÓN, SI BORRA UNA SALA, LOS CUADROS SE GUARDARÁN EN EL ALMACÉN!</h4>
             <label for="sala_id">ID SALA:</label>
             <input type="text" name="sala_id" id="sala_id" readonly="readonly"
                    value="<?php echo $_REQUEST['listado']; ?>" />

@@ -1,5 +1,6 @@
 <?php
     require("./ConexionBBDD/SesionIniciada.php");
+    require("./ConexionBBDD/existeBBDD.php");
     require("./ConexionBBDD/usarMusartin.php");
 ?>
 <!DOCTYPE html>

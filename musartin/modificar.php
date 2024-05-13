@@ -1,5 +1,6 @@
 <?php
     require("./ConexionBBDD/SesionIniciada.php");
+    require("./ConexionBBDD/existeBBDD.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
