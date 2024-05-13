@@ -4,9 +4,9 @@ La consulta crea la base de datos con nombre musartin, crea las 3 tablas (autore
       Hay un trigger que hace que cuando se borre una sala con cuadros, cambie la ubicación de los cuadros (el sala_id) a 1 (la sala 'almacén').
       Si se borra un autor, sus cuadros también se borran.
       Por último se insertan los datos demo.
-/*La sala almacén no se puede borrar (pero si modificar) */
+La sala almacén no se puede borrar (pero si modificar).
       
-/*CREATE DATABASE IF NOT EXISTS musartin;
+                CREATE DATABASE IF NOT EXISTS musartin;
                 USE musartin;
 
                 CREATE TABLE IF NOT EXISTS autores (
@@ -101,4 +101,3 @@ La consulta crea la base de datos con nombre musartin, crea las 3 tablas (autore
                     (null, 'La Última Cena', 1498, 'Fresco', 'Renacimiento', 'La Última Cena es una de las obras más conocidas del artista renacentista Leonardo da Vinci...', 3, 2),
                     (null, 'Guernica', 1937, 'Óleo sobre lienzo', 'Cubismo', 'Guernica es una obra maestra del pintor español Pablo Picasso...', 2, 2),
                     (null, 'La Gioconda', 1503, 'Pintura al óleo sobre tabla de álamo', 'Renacimiento', 'La Gioconda, también conocida como Mona Lisa, es una de las obras más famosas...', 3, 3);
-*/
