@@ -194,14 +194,4 @@
         ?>
     </div>
 </body>
-<!--    
-    CREATE TRIGGER before_delete_autores
-                BEFORE DELETE ON autores
-                FOR EACH ROW
-                BEGIN
-                    UPDATE cuadros
-                    SET autor_id = 1
-                    WHERE autor_id = OLD.autor_id;
-                END;
-    --->
 </html>
