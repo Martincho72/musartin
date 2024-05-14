@@ -109,7 +109,7 @@
         <label for="titulo_cuadro">Título del Cuadro:</label>
         <input type="text" id="titulo_cuadro" name="titulo_cuadro" required><br>
         <label for="fecha_creacion">Fecha de Creación:</label>
-        <input type="date" id="fecha_creacion" name="fecha_creacion" required><br>
+        <input type="number" id="fecha_creacion" name="fecha_creacion" required min="0" max="9999">
         <label for="tecnica">Técnica:</label>
         <input type="text" id="tecnica" name="tecnica" required><br>
         <label for="estilo">Estilo:</label>
