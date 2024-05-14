@@ -179,12 +179,6 @@ if (!isset($_SESSION['usuario'])) {
                         (null, 'La Gioconda', 1503, 'Pintura al óleo sobre tabla de álamo', 'Renacimiento', 'La Gioconda, también conocida como Mona Lisa, es una de las obras más famosas...', 3, 3);
                 ";
                 if ($mysqli->multi_query($sql)) {
-                    do {
-                        if ($result = $mysqli->store_result()) {
-                            $result->free();
-                        }
-                    } while ($mysqli->more_results() && $mysqli->next_result());
-
                     echo "<p>Base de datos Musartin creada con los datos de demostración. ✅</p>";
                     echo "<a href='../menuPrincipal.php'>Acceder a la página principal</a>";
                 } else {
